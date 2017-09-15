@@ -28,6 +28,7 @@
 			<thead>
 				<tr>
 					<th>Event</th>
+					<th>Admin</th>
 					<th>Date</th>
 					<th></th>
 				</tr>
@@ -37,6 +38,7 @@
 					<tr>
 						<% if event.user != current_user %>
 							<td><%= event.name %></td>
+							<td><%= event.user.email %></td>
 							<td><%= event.date %></td>
 							<td><%= link_to "Results", { controller: "events", action: "show", id: event}, class: "btn btn-primary btn-sm" %></td>
 						<% end %>
