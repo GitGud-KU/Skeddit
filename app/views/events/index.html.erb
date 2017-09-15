@@ -37,7 +37,6 @@
 				<% @events.each do |event, i| %>
 					<tr>
 						<% if event.owner != current_user %>
-							<td><%= link_to(event.name,event_path(event)) %></td>
 							<td><%= event.name %></td>
 							<td><%= event.owner.email %></td>
 							<td><%= event.date %></td>
