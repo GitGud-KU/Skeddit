@@ -1,6 +1,17 @@
-<p>test</p><h1> It works! </h1>
+<h1> Index </h1>
+<body>
 
-<% @events.each do |event| %>
-  <%= link_to(event.name,event_path(event)) %>
-  <br>
+<%= link_to "Add Event", { controller: "events", action: "new"}, class: "btn btn-default btn-lg btn-block" %>
+<br>
+<table class="table table-striped table-hover ">
+	<tr>
+		<th>Event</th>
+		<th>Date</th>
+	</tr>
+<% @events.each do |event, i| %>
+	<tr>
+		<td><%= link_to(event.name,event_path(event)) %></td>
+	</tr>
 <% end %>
+</table>
+</body>
