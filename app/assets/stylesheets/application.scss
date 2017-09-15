@@ -14,7 +14,11 @@
  *= require_self
  */
 @import "bootstrap-sprockets";
+// Import slate variables
+@import "bootswatch/slate/variables";
 @import "bootstrap";
+// And finally bootswatch style itself
+@import "bootswatch/slate/bootswatch";
 
 .navbar {
     -webkit-border-radius: 0;
