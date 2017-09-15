@@ -13,7 +13,7 @@
 			<tbody>
 				<% @events.each do |event, i| %>
 					<tr>
-						<% if event.user == current_user %>
+						<% if event.owner == current_user %>
 							<td><%= link_to(event.name,event_path(event)) %></td>
 							<td><%= event.date %></td>
 							<td><%= link_to "Results", { controller: "events", action: "show", id: event}, class: "btn btn-primary btn-sm" %></td>
@@ -35,7 +35,7 @@
 			<tbody>
 				<% @events.each do |event, i| %>
 					<tr>
-						<% if event.user != current_user %>
+						<% if event.owner != current_user %>
 							<td><%= link_to(event.name,event_path(event)) %></td>
 							<td><%= event.date %></td>
 							<td><%= link_to "Results", { controller: "events", action: "show", id: event}, class: "btn btn-primary btn-sm" %></td>
