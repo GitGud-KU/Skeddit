@@ -9,6 +9,12 @@
   </head>
 
   <body>
+    <!--
+	Creates unnecessary gap at the top of pages
+	<p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+	-->
+	<%= render partial: "shared/navbar" %>
     <%= yield %>
   </body>
 </html>
