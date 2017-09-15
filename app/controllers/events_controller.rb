@@ -15,10 +15,10 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @event.user_id = current_user.id
-    @possible_times = Array.new(48).map.with_index{|x,index| Date.today.to_datetime + index * (1.0/48)}.map{|time| [time,time.strftime('%I:%M:%S %p')]}
+    @possible_times = Array.new(48).map.with_index{|x,index| Date.today.to_datetime + index * (1.0/48)}.map{|time| [time,time.strftime('%I:%M %p')]}
   end
 
-  # Define what to do when create a new event
+  # Define what to do when creating a new event
   def create
     @event = Event.new(event_params)
     if @event.save
@@ -30,6 +30,7 @@ class EventsController < ApplicationController
 
   private
 
+  # Define the permitted params for creating a new event
   def event_params
     params.require(:event).permit(:name,:date,:user_id,:times_allowed => [])
   end
