@@ -1,6 +1,18 @@
 <div class="container">
 	<h1> Create New Event </h1>
 
+	<% if @event.errors.any? %>
+		<div id="error_explanation" style="color:red;">
+		<h3><%= pluralize(@event.errors.count, "error") %> prevented this event from being created:</h3>
+
+			<ul>
+			<% @event.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<%end %>
+			</ul>
+		</div>
+	<% end %>
+
 	<%= simple_form_for @event do |f| %>
 	  <%= f.input :name %>
 	  <%= f.input :date %>
