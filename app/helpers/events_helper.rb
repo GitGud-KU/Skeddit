@@ -1,9 +1,9 @@
 module EventsHelper
-  def hour_24
-    self.strftime("%I:%M %p")
+  def self.hour_24(x)
+    x.strftime("%H:%M")
   end
 
-  def hour_12
-    self.strftime("%l:%M")
+  def self.hour_12(x)
+    x.strftime("%I:%M %p")
   end
 end
