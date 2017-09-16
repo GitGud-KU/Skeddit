@@ -1,12 +1,17 @@
-<h1> Create New Event </h1>
+<div class="container">
+	<h1> Create New Event </h1>
 
-<%= simple_form_for @event do |f| %>
-  <%= f.input :name %>
-  <%= f.input :date %>
+	<%= simple_form_for @event do |f| %>
+	  <%= f.input :name %>
+	  <%= f.input :date %>
 
-  <%= f.input :times_allowed, collection: @possible_times, as: :check_boxes, value_method: :first, label_method: :last %>
+		<label class="control-label string optional" for="times_allowed">Times Allowed</label>
+	  <div class="panel panel-default">
+		  <%= f.collection_check_boxes :times_allowed, @possible_times, :first, :last,
+		  	{:item_wrapper_class => 'checkbox_container'} %>
+	  </div>
+	  <%= f.hidden_field :user_id %>
 
-  <%= f.hidden_field :user_id %>
-
-  <%= f.button :submit %>
-<% end %>
+	  <%= f.button :submit %>
+	<% end %>
+</div>

@@ -1,50 +1,66 @@
 <body>
 	<div class="container">
 		<h2>Your Events</h2>
-		<%= link_to "Add Event", { controller: "events", action: "new"}, class: "btn btn-success btn-lg btn-block" %>
-		<table class="table table-striped table-hover ">
-			<thead>
-				<tr>
-					<th>Event</th>
-					<th>Date</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @events.each do |event, i| %>
+		<%= link_to "Add Event", new_event_path, class: "btn btn-success btn-lg btn-block" %>
+		<% if !@admin_events.empty? %>
+			<table class="table table-striped table-hover ">
+				<thead>
 					<tr>
-						<% if event.owner == current_user %>
-							<td><%= event.name %></td>
-							<td><%= event.date %></td>
-							<td><%= link_to "Results", { controller: "events", action: "show", id: event}, class: "btn btn-primary btn-sm" %></td>
-						<% end %>
+						<th>Event</th>
+						<th>Date</th>
+						<th></th>
 					</tr>
-				<% end %>
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					<% @admin_events.each do |event| %>
+						<tr>
+							<% if event.owner == current_user %>
+								<td><%= event.name %></td>
+								<td><%= event.date %></td>
+								<td><%= link_to "Results", { controller: "events", action: "show", id: event}, class: "btn btn-primary btn-sm" %></td>
+							<% end %>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		<% else %>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					Looks like you have no events. Why don't you create one?
+				</div>
+			</div>
+		<% end %>
 		<br>
 		<h2>Others' Events</h2>
-		<table class="table table-striped table-hover ">
-			<thead>
-				<tr>
-					<th>Event</th>
-					<th>Owner</th>
-					<th>Date</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @events.each do |event, i| %>
+		<% if !@admin_events.empty? %>
+			<table class="table table-striped table-hover ">
+				<thead>
 					<tr>
-						<% if event.owner != current_user %>
-							<td><%= event.name %></td>
-							<td><%= event.owner.email %></td>
-							<td><%= event.date %></td>
-							<td><%= link_to "Results", { controller: "events", action: "show", id: event}, class: "btn btn-primary btn-sm" %></td>
-						<% end %>
+						<th>Event</th>
+						<th>Owner</th>
+						<th>Date</th>
+						<th></th>
 					</tr>
-				<% end %>
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					<% @other_events.each do |event| %>
+						<tr>
+							<% if event.owner != current_user %>
+								<td><%= event.name %></td>
+								<td><%= event.owner.email %></td>
+								<td><%= event.date %></td>
+								<td><%= link_to "Results", { controller: "events", action: "show", id: event}, class: "btn btn-primary btn-sm" %></td>
+							<% end %>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		<% else %>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					Looks like there aren't events. Tell your friends to make some.
+				</div>
+			</div>
+		<% end %>
 	</div>
 </body>
