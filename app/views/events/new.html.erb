@@ -2,7 +2,7 @@
 	<h1> Create New Event </h1>
 
 	<% if @event.errors.any? %>
-		<div id="error_explanation" style="color:red;">
+		<div id="error_explanation" class="alert alert-dismissible alert-danger">
 		<h3><%= pluralize(@event.errors.count, "error") %> prevented this event from being created:</h3>
 
 			<ul>
