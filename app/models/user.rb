@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :events
-  has_many :availabilities
+  # User can have many events and availabilities.
+  # If a user is destroyed, all of their events and availabilities are destroyed as well.
+  has_many :events, dependent: :destroy
+  has_many :availabilities, dependent: :destroy
 end

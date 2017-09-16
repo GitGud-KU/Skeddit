@@ -14,10 +14,40 @@
  *= require_self
  */
 @import "bootstrap-sprockets";
+// Import slate variables
+@import "bootswatch/slate/variables";
 @import "bootstrap";
+// And finally bootswatch style itself
+@import "bootswatch/slate/bootswatch";
 
 .navbar {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
 }
+
+.navbar-default {
+	margin : 0 !important;
+}
+
+.footer {
+  align-items: center;
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+.checkbox_container {
+  display: inline-block;
+  vertical-align: -1px;
+  margin: 5px;
+ }
+
+.checkbox_container input {
+  display: inline;
+  padding-left: 5px;
+ }
+
+.checkbox_container .collection_check_boxes{
+  display: inline;
+	padding-left: 2px;
+ }
