@@ -3,7 +3,8 @@ class EventsController < ApplicationController
 
   # Create an instance var of all of the events for use in the events#index page
   def index
-    @events = Event.all
+    @admin_events = Event.select{|event| event.owner == current_user}
+	@other_events = Event.select{|event| event.owner != current_user}
   end
 
   # Create an instance var of the event with the specified id for the events#show page
