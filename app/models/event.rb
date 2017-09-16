@@ -34,6 +34,14 @@ class Event < ApplicationRecord
 
   POSSIBLE_TIMES_CONST = Array.new(48).map.with_index{|x,index| Date.today.to_datetime + index * (1.0/48)}.map{|time| [time,time.strftime('%I:%M %p')]}
 
+  def hour_24
+    times_allowed.strftime("%I:%M %p")
+  end
+
+  def hour_12
+    times_allowed.strftime("%l:%M")
+  end
+  
   private
 
   # Delete all nil values from times_allowed array using ruby's compact method.
