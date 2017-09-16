@@ -1,3 +1,23 @@
+class EventValidator < ActiveModel::Validator
+  
+  def validate(event)
+    #Remove all nils from time_allowed array
+    event.times_allowed = event.times_allowed.compact
+    #Check if event name is given
+    if event.name == ""
+      event.errors[:base] << "Name cannot be empty"
+    end  
+    #Check to see if at least one time is chosen
+    if event.times_allowed.size <= 0
+      event.errors[:base] << "Must choose at least one time slot"
+    end
+    #Ensure date is not in the past
+    if event.date < Date.today
+      event.errors[:base] << "Cannot choose a date in the past"
+    end
+  end
+end
+
 class Event < ApplicationRecord
   # Every event belongs to an 'admin' user, and has many availabilites and 'participants' (users)
   #   through its availabilities.
@@ -9,10 +29,15 @@ class Event < ApplicationRecord
   # Run compact_times_allowed method before saving an event to the database.
   before_save :compact_times_allowed
 
+  # Ensures data is in an allowable format before adding it to the database
+  validates_with EventValidator
+
   private
 
   # Delete all nil values from times_allowed array using ruby's compact method.
   def compact_times_allowed
     self.times_allowed = self.times_allowed.compact
   end
+
+  
 end
