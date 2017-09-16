@@ -1,16 +1,11 @@
 <div class="container">
-	<h1> <%= @event.name %> </h1>
+	<h1>
+		<%= @event.name %>
+	</h1>
 
 	<p>
-	  Owner: <%= @event.owner.email %>
+		Owner:
+		<%= @event.owner.email %>
 	</p>
-	<table>
-		<thead>
-			<th></th>
-			<% @event.times_allowed.each do |time| %>
-			<th><% time %>/th>
-			<% end %>
-		</thead>
-	</table>
 
 </div>
