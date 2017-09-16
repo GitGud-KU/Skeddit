@@ -1,25 +1,17 @@
-<h1> Create New Event </h1>
+<div class="container">
+	<h1> Create New Event </h1>
 
-<% if @event.errors.any? %>
-	<div id="error_explanation" style="color:red;">
-	<h3><%= pluralize(@event.errors.count, "error") %> prevented this event from being created:</h3>
+	<%= simple_form_for @event do |f| %>
+	  <%= f.input :name %>
+	  <%= f.input :date %>
 
-		<ul>
-		<% @event.errors.full_messages.each do |msg| %>
-			<li><%= msg %></li>
-		<%end %>
-		</ul>
-	</div>
-<% end %>
+		<label class="control-label string optional" for="times_allowed">Times Allowed</label>
+	  <div class="panel panel-default">
+		  <%= f.collection_check_boxes :times_allowed, @possible_times, :first, :last,
+		  	{:item_wrapper_class => 'checkbox_container'} %>
+	  </div>
+	  <%= f.hidden_field :user_id %>
 
-<%= simple_form_for @event do |f| %>
-  <%= f.input :name %>
-
-  <%= f.input :date, as: :date, start_year: Date.today.year, end_year: Date.today.year + 8 %>
-
-  <%= f.input :times_allowed, collection: @possible_times, as: :check_boxes, value_method: :first, label_method: :last %>
-
-  <%= f.hidden_field :user_id %>
-
-  <%= f.button :submit %>
-<% end %>
+	  <%= f.button :submit %>
+	<% end %>
+</div>
