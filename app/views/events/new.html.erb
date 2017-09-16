@@ -15,7 +15,7 @@
 
 	<%= simple_form_for @event do |f| %>
 	  <%= f.input :name %>
-	  <%= f.input :date %>
+	  <%= f.input :date, as: :date, start_year: Date.today.year, end_year: Date.today.year + 8 %>
 
 		<label class="control-label string optional" for="times_allowed">Times Allowed</label>
 	  <div class="panel panel-default">
