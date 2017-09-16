@@ -3,7 +3,8 @@ class EventsController < ApplicationController
 
   # Create an instance var of all of the events for use in the events#index page
   def index
-    @events = Event.all
+    @admin_events = Event.select{|event| event.owner == current_user}
+	@other_events = Event.select{|event| event.owner != current_user}
   end
 
   # Create an instance var of the event with the specified id for the events#show page
@@ -13,7 +14,7 @@ class EventsController < ApplicationController
 
   # Create an instance var for a new event for the events#new pages
   def new
-    @event = Event.new
+    @event = Event.new(event_params)
     @event.user_id = current_user.id
     @possible_times = Array.new(48).map.with_index{|x,index| Date.today.to_datetime + index * (1.0/48)}.map{|time| [time,time.strftime('%I:%M %p')]}
   end
@@ -26,6 +27,22 @@ class EventsController < ApplicationController
     else
       render :new
     end
+  end
+
+  #Return edit event form?
+  def edit
+
+  end
+
+  #Define what to do when updating an event
+  def update
+
+  end
+
+  #Define what to do when deleting an event
+  def destroy
+    @event = nil #?
+    redirect_to(events_path)
   end
 
   private
