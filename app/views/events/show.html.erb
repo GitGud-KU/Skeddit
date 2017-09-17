@@ -3,11 +3,11 @@
 <p>
   Owner: <%= @event.owner.email %>
 </p>
-<table>
-	<thead>
-		<th></th>
+<table class="table table-striped">
+	<thead class="dateheads">
+		<th>Participant</th>
 		<% @event.times_allowed.each do |time| %>
-		<th><% time %>/th>
+		<th><%= time.strftime('%I:%M %p') %></th>
 		<% end %>
 	</thead>
 </table>
