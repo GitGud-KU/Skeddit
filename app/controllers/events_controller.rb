@@ -17,7 +17,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @event.user_id = current_user.id
-    @possible_times = Array.new(48).map.with_index{|x,index| Date.today.to_datetime + index * (1.0/48)}.map{|time| [time,time.strftime('%I:%M %p')]}
+    @possible_times = Event::POSSIBLE_TIMES_CONST
   end
 
   # Define what to do when creating a new event
@@ -26,7 +26,9 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to(events_path)
     else
+      @possible_times = Array.new(48).map.with_index{|x,index| Date.today.to_datetime + index * (1.0/48)}.map{|time| [time,time.strftime('%I:%M %p')]}
       render :new
+      #redirect_to "/events/new"
     end
   end
 
@@ -37,3 +39,4 @@ class EventsController < ApplicationController
     params.require(:event).permit(:name,:date,:user_id,:times_allowed => [])
   end
 end
+

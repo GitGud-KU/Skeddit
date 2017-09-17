@@ -1,16 +1,22 @@
 <div class="container">
-	<h1> <%= @event.name %> </h1>
+	<h1>
+		<%= @event.name %>
+	</h1>
 
 	<p>
-	  Owner: <%= @event.owner.email %>
+		Owner:
+		<%= @event.owner.email %>
 	</p>
+	<p>Times allowed</p>
 	<table>
-		<thead>
-			<th></th>
-			<% @event.times_allowed.each do |time| %>
-			<th><% time %>/th>
+		<tbody>
+			<% Event::POSSIBLE_TIMES_CONST.each do |time| %>
+				<% if(@event.times_allowed.include?(time)) %>
+					<tb style="background:green"><%= EventsHelper.hour_12(time) %></tb>
+				<%else%>
+					<tb style="background:red"><%= EventsHelper.hour_12(time) %></tb>
+				<%end%>
 			<% end %>
-		</thead>
+		</tbody>
 	</table>
-
 </div>
