@@ -12,7 +12,7 @@
 	<table class="table table-striped">
 		<thead>
 			<th><%= @event.owner.email %></th>
-			<% @event.times_allowed.each do |time| %>
+			<% Event::POSSIBLE_TIMES_CONST.each do |time| %>
 				<% if(@event.times_allowed.include?(time)) %>
 					<tb class="success">
 						<%= @hour_format == '24' ? time.hour_24 : time.hour_12 %>
