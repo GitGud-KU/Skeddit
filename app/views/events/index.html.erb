@@ -15,8 +15,8 @@
 						<td><%= event.name %></td>
 						<td><%= event.date %></td>
 						<td><%= link_to "Results", event_path(event), class: "btn btn-primary btn-sm" %>
-								<%= link_to "Edit", edit_event_path(event), class: "btn btn-primary btn-sm" %>
-								<%= link_to "Destroy", event_path(event), method: :delete, class: "btn btn-primary btn-sm", :confirm => "Delete this event?" %></td>
+								<%= link_to "Edit", edit_event_path(event), class: "btn btn-warning btn-sm" %>
+								<%= link_to "Destroy", event_path(event), method: :delete, class: "btn btn-danger btn-sm", :confirm => "Delete this event?" %></td>
 				</tr>
 			<% end %>
 		</tbody>
@@ -52,7 +52,15 @@
 						<td><%= event.name %></td>
 						<td><%= event.owner.email %></td>
 						<td><%= event.date %></td>
-						<td><%= link_to "Join", new_availability_path(:event_id => event.id), class: "btn btn-primary btn-sm" %></td>
+						<% if(current_user == nil) %>
+							<td><%= link_to "Join", new_availability_path(:event_id => event.id), class: "btn btn-primary btn-sm" %></td>
+						<% else %>
+							<% #if current user DOESNT has avial for event %>
+								<td><%= link_to "Join", new_availability_path(:event_id => event.id), class: "btn btn-primary btn-sm" %></td>
+							<% #else current user DOES has avial for event %>
+								<td><%= link_to "Edit", edit_availability_path(:event_id => event.id), class: "btn btn-warning btn-sm" %></td>
+								<td><%= link_to "Delete", availability_path(:event_id => event.id), method: :delete, class: "btn btn-danger btn-sm" :confirm => "Delete this event?" %></td>
+						<% end %>
 				</tr>
 			<% end %>
 		</tbody>
