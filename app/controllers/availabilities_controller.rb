@@ -1,4 +1,6 @@
 class AvailabilitiesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :check_format
 
   #Simply redirects back to home page. Required since refreshing after a failed validation will bring you to this index.
   def index
@@ -6,7 +8,8 @@ class AvailabilitiesController < ApplicationController
   end
 
   def new
-    @availability = Availability.find_or_initialize_by_event_id_and_user_id(params[:event_id], current_user.id)
+    @availability = Availability.find_or_initialize_by(event_id: params[:event_id], user_id: current_user.id)
+    @times_allowed = @availability.event.times_allowed.map(&:to_datetime)
   end
 
   def create
@@ -14,13 +17,30 @@ class AvailabilitiesController < ApplicationController
     if @availability.save
       redirect_to(event_path(@availability.event_id))
     else
-      #If resources don't load properly upon rerender, add things here.
+      @times_allowed = @availability.event.times_allowed.map(&:to_datetime)
+      render :new
+    end
+  end
+
+  def edit
+    @availability = Availability.where(event_id: params[:event_id], user_id: current_user.id)
+    @times_allowed = @availability.event.times_allowed.map(&:to_datetime)
+  end
+
+  def update
+    @availability = Availability.where(event_id: params[:event_id], user_id: current_user.id)
+    if @availability.update(availability_params)
+      redirect_to (events_path)
+    else
+      @times_allowed = @availability.event.times_allowed.map(&:to_datetime)
       render :new
     end
   end
 
   def destroy
-
+    @availability = Availability.where(event_id: params[:event_id], user_id: current_user.id)
+    @availability.destroy if @availability.owner == current_user
+    redirect_to(events_path)
   end
 
   private
@@ -28,5 +48,8 @@ class AvailabilitiesController < ApplicationController
   def availability_params
     params.require(:availability).permit(:event_id,:user_id,:times_available => [])
   end
-end
 
+  def check_format
+    @hour_format = session[:hour_format] || 12
+  end
+end
