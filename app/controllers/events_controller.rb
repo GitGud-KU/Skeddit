@@ -32,6 +32,24 @@ class EventsController < ApplicationController
     end
   end
 
+  # Find event object to update and store possible_times in a var.
+  def edit
+    @event = Event.find(params[:id])
+    @possible_times = Event::POSSIBLE_TIMES_CONST
+  end
+
+  # Define what to do when trying to update an event.
+  def update
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      redirect_to(events_path)
+    else
+      @possible_times = Event::POSSIBLE_TIMES_CONST
+      render :new
+    end
+  end
+
+  # Find and destroy an event. Redirect to events#index.
   def destroy
     @event = Event.find(params[:id])
     @event.destroy if @event.owner == current_user
