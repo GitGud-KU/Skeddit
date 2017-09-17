@@ -8,19 +8,10 @@
       <ul class="nav navbar-nav navbar-right">
 		<li style="padding-top:5px;padding-right:5px;">
 			<div class="btn-group btn-toggle">
-			    <button class="btn btn-default">12hr</button>
-			    <button class="btn btn-info active">24hr</button>
+        <%= link_to "12hr", reformat_time_path, class: session[:hour_format] == 12 ? "btn btn-info active" : "btn btn-default" %>
+        <%= link_to "24hr", reformat_time_path, class: session[:hour_format] == 12 ? "btn btn-default" : "btn btn-info active" %>
   			</div>
-			<script>
-				$('.btn-toggle').click(function() {
-				    $(this).find('.btn').toggleClass('active');
-				    if ($(this).find('.btn-info').length>0) {
-				    	$(this).find('.btn').toggleClass('btn-info');
-				    }
-				    $(this).find('.btn').toggleClass('btn-default');
-				});
-			</script>
-        <li>
+    <li>
 		  <% if user_signed_in? %>
 			  <li class="dropdown">
 				<a href="events" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account <span class="caret"></span></a>
