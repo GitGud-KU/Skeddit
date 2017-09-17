@@ -18,7 +18,7 @@
 
 	<label class="control-label string optional" for="times_allowed">Times Allowed</label>
   <div class="panel panel-default">
-    <% if @hour_format == '24' %>
+    <% if @hour_format == 24 %>
       <%= f.collection_check_boxes :times_allowed, @possible_times, :to_datetime, :hour_24,
         {:item_wrapper_class => 'checkbox_container'} %>
     <% else %>

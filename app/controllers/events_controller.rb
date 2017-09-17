@@ -40,6 +40,6 @@ class EventsController < ApplicationController
   end
 
   def check_format
-    @hour_format = params[:hr_fmt] || '12'
+    @hour_format = session[:hour_format] || 12
   end
 end
