@@ -19,9 +19,6 @@ class EventsController < ApplicationController
     @event = Event.new
     @event.user_id = current_user.id
     @possible_times = Event::POSSIBLE_TIMES_CONST
-    #@possible_times = [24 hour mode] ? @possible_times.map{|time| [time,EventsHelper.hour_24(time)]} 
-      #: @possible_times.map{|time| [time,EventsHelper.hour_12(time)]}
-    @possible_times = @possible_times.map{|time| [time,EventsHelper.hour_24(time)]}
   end
 
   # Define what to do when creating a new event
