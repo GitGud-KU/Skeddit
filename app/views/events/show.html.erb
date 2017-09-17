@@ -5,9 +5,11 @@
 </p>
 <table class="table table-striped">
 	<thead class="dateheads">
-		<th>Participant</th>
-		<% @event.times_allowed.each do |time| %>
-		<th><%= time.strftime('%I:%M %p') %></th>
-		<% end %>
+		<tr>
+			<th>Participant</th>
+			<% @event.times_allowed.each do |time| %>
+			<th><%= time.strftime('%I:%M %p') %></th>
+			<% end %>
+		</tr>
 	</thead>
 </table>
