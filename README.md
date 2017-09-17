@@ -40,3 +40,7 @@ With the databse set up, Skeddit should be ready to run! Type `rail s` to launch
 [Bootswatch](https://bootswatch.com/)
 
 [Gemfile Gems](https://github.com/GitGud-KU/Skeddit/blob/master/Gemfile)
+
+[Devise](https://github.com/plataformatec/devise)
+
+[Simple Form](https://github.com/plataformatec/simple_form)
