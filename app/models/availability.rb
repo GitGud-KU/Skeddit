@@ -1,14 +1,7 @@
 #Ensures the availability meets all the requirements before being added.
+#Because of the way we set up our database, User and Event ids are already validated elsewhere.
 class AvailabilityValidator < ActiveModel::Validator
 	def validate(availability)
-		#Check for valid event id.
-		if availability.event_id == nil || availability.event_id < 1
-			availability.errors[:base] << "Must have a valid event id"
-		end
-		#Check for valid user id.
-		if availability.user_id == nil || availability.user_id < 1
-			availability.errors[:base] << "Must have a valid uesr id"
-		end
 		#Make sure at least one available time is selected.
 		if availability.times_available.size <= 0
 			availability.errors[:base] << "Must choose at least one time slot"
@@ -25,3 +18,4 @@ class Availability < ApplicationRecord
   #Ensures the availability meets all the requirements before being added.
   validates_with AvailabilityValidator
 end
+
