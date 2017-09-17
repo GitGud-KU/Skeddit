@@ -39,6 +39,7 @@ class EventsController < ApplicationController
     params.require(:event).permit(:name,:date,:user_id,:times_allowed => [])
   end
 
+  # Define a variable with the current hour format setting. If none is set, default to 12.
   def check_format
     @hour_format = session[:hour_format] || 12
   end
