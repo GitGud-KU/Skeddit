@@ -17,9 +17,10 @@
 		<tbody>
 				<% Event::POSSIBLE_TIMES_CONST.each do |time| %>
 					<% if(@event.times_allowed.include?(time)) %>
-						<tr><td class="success"><%= @hour_format == '24' ? time.hour_24 : time.hour_12 %></td><td></td></tr>
-					<% else %>
-						<tr><td class="danger"><%= @hour_format == '24' ? time.hour_24 : time.hour_12 %></td><td></td></tr>
+						<tr>
+							<td><%= @hour_format == '24' ? time.hour_24 : time.hour_12 %></td>
+							<td></td>
+						</tr>
 					<% end %>
 				<% end %>
 		</tbody>
