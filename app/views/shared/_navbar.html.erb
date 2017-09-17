@@ -5,16 +5,22 @@ available at https://v4-alpha.getbootstrap.com/components/navbar/
   <!-- We use the fluid option here to avoid overriding the fixed width of a normal container within the narrow content columns. -->
   <div class="container-fluid">
     <div class="navbar-header">
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsible">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
       <%= link_to "Skeddit", events_path, class: "navbar-brand" %>
     </div>
-    <div class="container">
+	<div class="collapse navbar-collapse" id="collapsible">
       <ul class="nav navbar-nav navbar-right">
 		<li style="padding-top:5px;padding-right:5px;">
 			<div class="btn-group btn-toggle">
-        <%= link_to "12hr", reformat_time_path, class: session[:hour_format] == 24 ? "btn btn-default" : "btn btn-info active" %>
-        <%= link_to "24hr", reformat_time_path, class: session[:hour_format] == 24 ? "btn btn-info active" : "btn btn-default" %>
+        		<%= link_to "12hr", reformat_time_path, class: session[:hour_format] == 24 ? "btn btn-default" : "btn btn-info active" %>
+        		<%= link_to "24hr", reformat_time_path, class: session[:hour_format] == 24 ? "btn btn-info active" : "btn btn-default" %>
   			</div>
-    <li>
+    	<li>
 		  <% if user_signed_in? %>
 			  <li class="dropdown">
 				<a href="events" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account <span class="caret"></span></a>
@@ -34,5 +40,5 @@ available at https://v4-alpha.getbootstrap.com/components/navbar/
 		<% end %>
       </li>
     </ul>
-  </div>
+</div>
 </nav>
