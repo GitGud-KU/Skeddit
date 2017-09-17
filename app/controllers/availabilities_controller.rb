@@ -15,7 +15,7 @@ class AvailabilitiesController < ApplicationController
   def create
     @availability = Availability.new(availability_params)
     if @availability.save
-      redirect_to(event_path(@availability.event_id))
+      redirect_to (events_path)
     else
       @times_allowed = @availability.event.times_allowed.map(&:to_datetime)
       render :new
@@ -23,12 +23,12 @@ class AvailabilitiesController < ApplicationController
   end
 
   def edit
-    @availability = Availability.where(event_id: params[:event_id], user_id: current_user.id)
+    @availability = Availability.find(params[:id])
     @times_allowed = @availability.event.times_allowed.map(&:to_datetime)
   end
 
   def update
-    @availability = Availability.where(event_id: params[:event_id], user_id: current_user.id)
+    @availability = Availability.find(params[:id])
     if @availability.update(availability_params)
       redirect_to (events_path)
     else
@@ -38,9 +38,13 @@ class AvailabilitiesController < ApplicationController
   end
 
   def destroy
-    @availability = Availability.where(event_id: params[:event_id], user_id: current_user.id)
-    @availability.destroy if @availability.owner == current_user
+    @availability = Availability.find(params[:id])
+    @availability.destroy
     redirect_to(events_path)
+  end
+
+  def show
+    @availability = Availability.find(params[:id])
   end
 
   private

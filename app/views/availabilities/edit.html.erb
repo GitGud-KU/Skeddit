@@ -1,2 +1,32 @@
 <h1>Availabilities#edit</h1>
 <p>Find me in app/views/availabilities/edit.html.erb</p>
+
+<% if @availability.errors.any? %>
+	<div id="availability_explanation" class="alert alert-dismissible alert-danger">
+	<h3><%= pluralize(@availability.errors.count, "error") %> prevented these availabilities from being added:</h3>
+
+		<ul>
+		<% @availability.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+		<%end %>
+		</ul>
+	</div>
+<% end %>
+
+<%= simple_form_for @availability do |f| %>
+	<label class="control-label string optional" for="times_available">Times Available</label>
+  <div class="panel panel-default">
+    <% if @hour_format == '24' %>
+      <%= f.collection_check_boxes :times_available, @times_allowed, :to_datetime, :hour_24,
+        {:item_wrapper_class => 'checkbox_container'} %>
+    <% else %>
+	    <%= f.collection_check_boxes :times_available, @times_allowed, :to_datetime, :hour_12,
+	  	  {:item_wrapper_class => 'checkbox_container'} %>
+    <% end %>
+  </div>
+
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :event_id%>
+
+  <%= f.button :submit %>
+<% end %>
