@@ -14,8 +14,7 @@
 				  <li><p>Logged in as: <%= current_user.email %></p></li>
 				  <li class="divider"></li>
 				  <!-- TODO: Add links for editting functions -->
-				  <li><a>Edit Email</a></li>
-				  <li><a>Edit Password</a></li>
+				  <li><%= link_to('Edit registration', edit_user_registration_path) %></li>
 				  <li class="divider"></li>
 				  <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
 				</ul>
