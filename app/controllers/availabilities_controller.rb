@@ -15,7 +15,7 @@ class AvailabilitiesController < ApplicationController
   def create
     @availability = Availability.new(availability_params)
     if @availability.save
-      redirect_to(event_path(@availability.event_id))
+      redirect_to (events_path)
     else
       @times_allowed = @availability.event.times_allowed.map(&:to_datetime)
       render :new
