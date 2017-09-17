@@ -1,6 +1,7 @@
 class AvailabilitiesController < ApplicationController
   before_action :authenticate_user!
   before_action :check_format
+  before_action :check_times_allowed, :only => [:new, :create, :edit, :update]
 
   #Simply redirects back to home page. Required since refreshing after a failed validation will bring you to this index.
   def index
@@ -9,7 +10,6 @@ class AvailabilitiesController < ApplicationController
 
   def new
     @availability = Availability.find_or_initialize_by(event_id: params[:event_id], user_id: current_user.id)
-    @times_allowed = @availability.event.times_allowed.map(&:to_datetime)
   end
 
   def create
@@ -17,14 +17,12 @@ class AvailabilitiesController < ApplicationController
     if @availability.save
       redirect_to(event_path(@availability.event_id))
     else
-      @times_allowed = @availability.event.times_allowed.map(&:to_datetime)
       render :new
     end
   end
 
   def edit
     @availability = Availability.find(event_id: params[:event_id], user_id: current_user.id)
-    @times_allowed = @availability.event.times_allowed.map(&:to_datetime)
   end
 
   def update
@@ -32,7 +30,6 @@ class AvailabilitiesController < ApplicationController
     if @availability.update(availability_params)
       redirect_to (events_path)
     else
-      @times_allowed = @availability.event.times_allowed.map(&:to_datetime)
       render :new
     end
   end
@@ -51,5 +48,9 @@ class AvailabilitiesController < ApplicationController
 
   def check_format
     @hour_format = session[:hour_format] || 12
+  end
+
+  def check_times_allowed
+    @times_allowed = @availability.event.times_allowed.map(&:to_datetime)
   end
 end
