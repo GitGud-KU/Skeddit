@@ -45,7 +45,7 @@ class EventsController < ApplicationController
       redirect_to(events_path)
     else
       @possible_times = Event::POSSIBLE_TIMES_CONST
-      render :new
+      render :edit
     end
   end
 
