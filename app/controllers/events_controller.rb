@@ -13,6 +13,8 @@ class EventsController < ApplicationController
   # Create an instance var of the event with the specified id for the events#show page
   def show
     @event = Event.find(params[:id])
+    @times_allowed = @event.times_allowed.map(&:to_datetime)
+    @participants = @event.participants
   end
 
   # Create an instance var for a new event for the events#new pages
