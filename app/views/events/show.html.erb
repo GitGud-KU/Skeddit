@@ -4,7 +4,10 @@
 	</h1>
 
 	<p>
-		Owner:
+		<b>Date:</b>
+		<%= @event.date.strftime("%a, %B %d, %Y") %>
+		<br>
+		<b>Owner:</b>
 		<%= @event.owner.email %>
 	</p>
 	<br>
