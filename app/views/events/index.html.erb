@@ -15,7 +15,8 @@
 						<td><%= event.name %></td>
 						<td><%= event.date %></td>
 						<td><%= link_to "Results", event_path(event), class: "btn btn-primary btn-sm" %>
-						<%= link_to "Destroy", event_path(event), method: :delete, class: "btn btn-primary btn-sm", :confirm => "Delete this event?" %></td>
+								<%= link_to "Edit", edit_event_path(event), class: "btn btn-primary btn-sm" %>
+								<%= link_to "Destroy", event_path(event), method: :delete, class: "btn btn-primary btn-sm", :confirm => "Delete this event?" %></td>
 				</tr>
 			<% end %>
 		</tbody>
