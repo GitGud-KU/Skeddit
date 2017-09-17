@@ -17,24 +17,30 @@ class AvailabilitiesController < ApplicationController
     if @availability.save
       redirect_to(event_path(@availability.event_id))
     else
-      #If resources don't load properly upon rerender, add things here.
+      @times_allowed = @availability.event.times_allowed.map(&:to_datetime)
       render :new
     end
+  end
+
+  def edit
+    @availability = Availability.find(event_id: params[:event_id], user_id: current_user.id)
+    @times_allowed = @availability.event.times_allowed.map(&:to_datetime)
   end
 
   def update
     @availability = Availability.find(event_id: params[:event_id], user_id: current_user.id)
-    if @availability.save
+    if @availability.update(availability_params)
       redirect_to (events_path)
     else
-      #If resources don't load properly upon rerender, add things here.
+      @times_allowed = @availability.event.times_allowed.map(&:to_datetime)
       render :new
     end
-
   end
 
   def destroy
-
+    @availability = Availability.find(event_id: params[:event_id], user_id: current_user.id)
+    @availability.destroy if @availability.owner == current_user
+    redirect_to(events_path)
   end
 
   private

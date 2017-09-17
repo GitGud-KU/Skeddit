@@ -16,12 +16,11 @@
 <%= simple_form_for @availability do |f| %>
 	<label class="control-label string optional" for="times_available">Times Available</label>
   <div class="panel panel-default">
-		<!--I DON'T LIKE THE MAPPING IN HERE :( -->
     <% if @hour_format == '24' %>
-      <%= f.collection_check_boxes :times_available, @availability.event.times_allowed.map(&:to_datetime), :to_datetime, :hour_24,
+      <%= f.collection_check_boxes :times_available, @times_allowed, :to_datetime, :hour_24,
         {:item_wrapper_class => 'checkbox_container'} %>
     <% else %>
-	    <%= f.collection_check_boxes :times_available, @availability.event.times_allowed.map(&:to_datetime), :to_datetime, :hour_12,
+	    <%= f.collection_check_boxes :times_available, @times_allowed, :to_datetime, :hour_12,
 	  	  {:item_wrapper_class => 'checkbox_container'} %>
     <% end %>
   </div>
