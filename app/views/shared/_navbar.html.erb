@@ -6,6 +6,7 @@
     </div>
     <div class="container">
       <ul class="nav navbar-nav navbar-right">
+		<li style="padding-top:5px;padding-right:5px;"><input type="checkbox" checked data-toggle="toggle" data-on="12hr" data-off="24hr" data-onstyle="primary" data-offstyle="primary"></li>
         <li>
 		  <% if user_signed_in? %>
 			  <li class="dropdown">
@@ -14,6 +15,7 @@
 				  <li><p>Logged in as: <%= current_user.email %></p></li>
 				  <li class="divider"></li>
 				  <li><%= link_to('Edit registration', edit_user_registration_path) %></li>
+
 				  <li class="divider"></li>
 				  <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
 				</ul>
