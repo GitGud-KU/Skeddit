@@ -32,6 +32,12 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy if @event.owner == current_user
+    redirect_to(events_path)
+  end
+
   private
 
   # Define the permitted params for creating a new event
