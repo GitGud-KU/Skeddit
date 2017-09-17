@@ -13,7 +13,7 @@
 		<% @admin_events.each do |event| %>
 		<tr>
 			<td><%= event.name %></td>
-			<td><%= event.date %></td>
+			<td><%= event.date.strftime("%a, %B %d, %Y") %></td>
 			<td><%= link_to "Results", event_path(event), class: "btn btn-primary btn-sm" %>
 				<%= link_to "Edit", edit_event_path(event), class: "btn btn-warning btn-sm" %>
 				<%= link_to "Destroy", event_path(event), method: :delete, class: "btn btn-danger btn-sm", :confirm => "Delete this event?" %></td>
@@ -51,12 +51,12 @@
 		<tr>
 			<td><%= event.name %></td>
 			<td><%= event.owner.email %></td>
-			<td><%= event.date %></td>
+			<td><%= event.date.strftime("%a, %B %d, %Y") %></td>
 			<% if(current_user == nil  || !event.participants.include?(current_user)) %>
 			<td><%= link_to "Join", new_availability_path(:event_id => event.id), class: "btn btn-primary btn-sm" %></td>
 		<% else %>
 		<td><%= link_to "Edit", edit_availability_path(event.availabilities.find_by(:user_id => current_user.id)), class: "btn btn-warning btn-sm" %>
-		<%= link_to "Delete", availability_path(event.availabilities.find_by(:user_id => current_user.id)), method: :delete, class: "btn btn-danger btn-sm", :confirm => "Delete this event?" %></td>
+		<%= link_to "Leave", availability_path(event.availabilities.find_by(:user_id => current_user.id)), method: :delete, class: "btn btn-danger btn-sm", :confirm => "Delete this event?" %></td>
 			<% end %>
 		</tr>
 		<% end %>
