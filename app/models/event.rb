@@ -28,6 +28,7 @@ class Event < ApplicationRecord
 
   # Run compact_times_allowed method before saving an event to the database.
   before_save :compact_times_allowed
+  before_save :ensure_times_allowed_has_correct_date
 
   # Ensures data is in an allowable format before adding it to the database
   validates_with EventValidator
@@ -41,5 +42,9 @@ class Event < ApplicationRecord
     self.times_allowed = self.times_allowed.compact
   end
 
-
+  def ensure_times_allowed_has_correct_date
+    self.times_allowed = self.times_allowed.map{|time| time.change(:year => self.date.year,
+                                              :month => self.date.month,
+                                              :day => self.date.day)}
+  end
 end
