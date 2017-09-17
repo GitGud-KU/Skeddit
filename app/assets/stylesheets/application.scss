@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap-toggle
  */
 @import "bootstrap-sprockets";
 // Import slate variables
@@ -62,6 +63,10 @@
   white-space: nowrap;
 }
 
+.nav > input {
+	padding-top: 5px;
+}
+
 body {
-  padding-top: 50px; 
+  padding-top: 50px;
 }
