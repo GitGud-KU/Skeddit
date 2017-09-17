@@ -55,7 +55,8 @@
 			<% if(current_user == nil  || !event.participants.include?(current_user)) %>
 			<td><%= link_to "Join", new_availability_path(:event_id => event.id), class: "btn btn-primary btn-sm" %></td>
 		<% else %>
-			<!-- TODO -->
+		<td><%= link_to "Edit", edit_availability_path(event, :event_id => event.id), class: "btn btn-warning btn-sm" %>
+		<%= link_to "Delete", availability_path(event, :event_id => event.id), method: :delete, class: "btn btn-danger btn-sm", :confirm => "Delete this event?" %></td>
 			<% end %>
 		</tr>
 		<% end %>

@@ -39,8 +39,12 @@ class AvailabilitiesController < ApplicationController
 
   def destroy
     @availability = Availability.where(event_id: params[:event_id], user_id: current_user.id)
-    @availability.destroy if @availability.owner == current_user
+    @availability.destroy
     redirect_to(events_path)
+  end
+
+  def show
+    @availability = Availability.where(event_id: params[:event_id], user_id: current_user.id)
   end
 
   private
