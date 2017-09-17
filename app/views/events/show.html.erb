@@ -7,16 +7,18 @@
 		Owner:
 		<%= @event.owner.email %>
 	</p>
-	<p>Times allowed</p>
-	<table>
-		<tbody>
-			<% Event::POSSIBLE_TIMES_CONST.each do |time| %>
+	<br>
+	<h3>Availabilities</h3>
+	<table class="table table-striped">
+		<thead>
+			<th><%= @event.owner.email %></th>
+			<% @event.times_allowed.each do |time| %>
 				<% if(@event.times_allowed.include?(time)) %>
-					<tb style="background:green"><%= EventsHelper.hour_12(time) %></tb>
+					<th class="success"><%= EventsHelper.hour_12(time) %></tb>
 				<%else%>
-					<tb style="background:red"><%= EventsHelper.hour_12(time) %></tb>
+					<th class="danger"><%= EventsHelper.hour_12(time) %></tb>
 				<%end%>
 			<% end %>
-		</tbody>
+		</thead>
 	</table>
 </div>
