@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-default" role="navigation">
+<nav class="navbar navbar-default" role="navigation">
   <!-- We use the fluid option here to avoid overriding the fixed width of a normal container within the narrow content columns. -->
   <div class="container-fluid">
     <div class="navbar-header">
@@ -7,15 +7,24 @@
     <div class="container">
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <p class="navbar-btn">
-            <% if user_signed_in? %>
-            <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "btn btn-default") %>
-          <% else %>
-            <%= link_to('Login', new_user_session_path, class: "btn btn-default")  %>
-            <% end %>
-          </p>
-        </li>
-      </ul>
-    </div>
+		  <% if user_signed_in? %>
+			  <li class="dropdown">
+				<a href="events" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account <span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+				  <li><p>Logged in as: <%= current_user.email %></p></li>
+				  <li class="divider"></li>
+				  <!-- TODO: Add links for editting functions -->
+				  <li><%= link_to('Edit registration', edit_user_registration_path) %></li>
+				  <li class="divider"></li>
+				  <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+				</ul>
+		  	</li>
+		<% else %>
+			<p class="navbar-btn">
+            	<%= link_to('Login', new_user_session_path, class: "btn btn-default")  %>
+        	</p>
+		<% end %>
+      </li>
+    </ul>
   </div>
 </nav>
