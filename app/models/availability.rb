@@ -5,15 +5,12 @@ class AvailabilityValidator < ActiveModel::Validator
 		#Removes any nils from times_available array
 		availability.times_available = availability.times_available.compact
 		#Make sure at least one available time is selected.
-		if availability.times_available.size <= 0
-			availability.errors[:base] << "Must choose at least one time slot"
-		end
 	end
 end
 
 class Availability < ApplicationRecord
   # Each Availablity 'belongs to' an event and a user.
-  # If an availability's user or event is destroyed, so is the availability. 
+  # If an availability's user or event is destroyed, so is the availability.
   belongs_to :event
   belongs_to :user
 
@@ -31,5 +28,3 @@ class Availability < ApplicationRecord
   end
 
 end
-
-

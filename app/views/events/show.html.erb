@@ -4,25 +4,35 @@
 	</h1>
 
 	<p>
-		Owner:
+		<b>Date:</b>
+		<%= @event.date.strftime("%a, %B %d, %Y") %>
+		<br>
+		<b>Owner:</b>
 		<%= @event.owner.email %>
 	</p>
 	<br>
 	<h3>Availabilities</h3>
 	<table class="table table-striped">
 		<thead>
-			<th style="width:20%;">Times</th>
-			<th style="width:80%;">Participants</th>
+			<th style="width:10%;">Times</th>
+			<th style="width:20%;">Count</th>
+			<th style="width:35%;">Available</th>
+			<th style="width:35%;">Unavailable</th>
 		</thead>
 		<tbody>
 			<% @times_allowed.each do |time| %>
+			<% available_participants = available_participants(@participants,@event,time)
+			unavailable_participants = @event.participants - available_participants%>
 				<tr>
 					<td><%= @hour_format == 24 ? time.hour_24 : time.hour_12 %></td>
 					<td>
-						<%= @event.owner.email %><br>
-						<% available_participants(@participants,@event,time).each do |participant| %>
-							<%= participant.email %><br>
-						<% end %>
+						<%= pluralize(available_participants.size + 1, "Participant") %>
+					</td>
+					<td>
+						<%= available_participants.map{|x| x.email}.append(@event.owner.email).join(", ") %>
+					</td>
+					<td>
+						<%= unavailable_participants.map{|x| x.email}.join(", ") %>
 					</td>
 				</tr>
 			<% end %>
