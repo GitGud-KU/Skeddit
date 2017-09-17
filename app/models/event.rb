@@ -22,12 +22,14 @@ class Event < ApplicationRecord
     self.times_allowed = self.times_allowed.compact
   end
   
+  #Ensures the name field is not empty
   def names_cannot_be_empty
     if self.name == ""
       self.errors[:base] << "Name cannot be empty"
     end
   end
   
+  #Ensures that at least one time is chosen for the event
   def must_choose_at_least_one_time
     self.times_allowed = self.times_allowed.compact
     if self.times_allowed.size <= 0
@@ -35,12 +37,15 @@ class Event < ApplicationRecord
     end
   end
   
+  #Verifies event date is not before today
   def date_cannot_be_in_the_past
     if self.date < Date.today
       self.errors[:base] << "Cannot choose a date in the past"
     end
   end
 
+  #When we created the times, we used today to generate the intervals. 
+  #This changes the date of the datetime to the event date.
   def ensure_times_allowed_has_correct_date
     self.times_allowed = self.times_allowed.map{|time| time.change(:year => self.date.year,
                                               :month => self.date.month,
