@@ -32,6 +32,12 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy if @event.owner == current_user
+    redirect_to(events_path)
+  end
+
   private
 
   # Define the permitted params for creating a new event
@@ -39,6 +45,7 @@ class EventsController < ApplicationController
     params.require(:event).permit(:name,:date,:user_id,:times_allowed => [])
   end
 
+  # Define a variable with the current hour format setting. If none is set, default to 12.
   def check_format
     @hour_format = session[:hour_format] || 12
   end
