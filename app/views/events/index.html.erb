@@ -50,7 +50,7 @@
 						<td><%= event.name %></td>
 						<td><%= event.owner.email %></td>
 						<td><%= event.date %></td>
-						<td><%= link_to "Results", event_path(event), class: "btn btn-primary btn-sm" %></td>
+						<td><%= link_to "Join", new_availability_path(event), class: "btn btn-primary btn-sm" %></td>
 				</tr>
 			<% end %>
 		</tbody>
