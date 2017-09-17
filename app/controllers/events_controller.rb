@@ -27,7 +27,11 @@ class EventsController < ApplicationController
   # Define what to do when creating a new event
   def create
     @event = Event.new(event_params)
-    if @event.save
+    if !(Date.valid_date?(event_params['date(1i)'].to_i,event_params['date(2i)'].to_i,event_params['date(3i)'].to_i))
+      @event.errors.add(:base,"Invalid date error")
+      @possible_times = Event::POSSIBLE_TIMES_CONST
+      render :new
+    elsif @event.save
       redirect_to(events_path)
     else
       @possible_times = Event::POSSIBLE_TIMES_CONST
@@ -44,7 +48,11 @@ class EventsController < ApplicationController
   # Define what to do when trying to update an event.
   def update
     @event = Event.find(params[:id])
-    if @event.update(event_params)
+    if !(Date.valid_date?(event_params['date(1i)'].to_i,event_params['date(2i)'].to_i,event_params['date(3i)'].to_i))
+      @event.errors.add(:base,"Invalid date error")
+      @possible_times = Event::POSSIBLE_TIMES_CONST
+      render :edit
+    elsif @event.update(event_params)
       redirect_to(events_path)
     else
       @possible_times = Event::POSSIBLE_TIMES_CONST
