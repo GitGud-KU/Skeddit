@@ -1,11 +1,12 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, :only => [:new, :create]
+  before_action :check_format
 
   # Create an instance var of all of the events for use in the events#index page
   def index
-    @admin_events = Event.select{|event| event.owner == current_user}
-      @other_events = Event.select{|event| event.owner != current_user}
     @events = Event.all
+    @admin_events = @events.select{|event| event.owner == current_user}
+    @other_events = @events.reject{|event| event.owner == current_user}
   end
 
   # Create an instance var of the event with the specified id for the events#show page
@@ -26,9 +27,8 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to(events_path)
     else
-      @possible_times = Array.new(48).map.with_index{|x,index| Date.today.to_datetime + index * (1.0/48)}.map{|time| [time,time.strftime('%I:%M %p')]}
-      render :new
-      #redirect_to "/events/new"
+      @possible_times = Event::POSSIBLE_TIMES_CONST
+      redirect_to new_event_path
     end
   end
 
@@ -37,6 +37,10 @@ class EventsController < ApplicationController
   # Define the permitted params for creating a new event
   def event_params
     params.require(:event).permit(:name,:date,:user_id,:times_allowed => [])
+  end
+
+  def check_format
+    @hour_format = params[:hr_fmt] || '12'
   end
 end
 

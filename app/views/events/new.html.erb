@@ -18,9 +18,15 @@
 
 	<label class="control-label string optional" for="times_allowed">Times Allowed</label>
   <div class="panel panel-default">
-	  <%= f.collection_check_boxes :times_allowed, @possible_times, :first, :last,
-	  	{:item_wrapper_class => 'checkbox_container'} %>
+    <% if @hour_format == '24' %>
+      <%= f.collection_check_boxes :times_allowed, @possible_times, :to_datetime, :hour_24,
+        {:item_wrapper_class => 'checkbox_container'} %>
+    <% else %>
+	    <%= f.collection_check_boxes :times_allowed, @possible_times, :to_datetime, :hour_12,
+	  	  {:item_wrapper_class => 'checkbox_container'} %>
+    <% end %>
   </div>
+
   <%= f.hidden_field :user_id %>
 
   <%= f.button :submit %>

@@ -12,9 +12,13 @@
 		<tbody>
 			<% Event::POSSIBLE_TIMES_CONST.each do |time| %>
 				<% if(@event.times_allowed.include?(time)) %>
-					<tb style="background:green"><%= EventsHelper.hour_12(time) %></tb>
+					<tb style="background:green">
+						<%= @hour_format == '24' ? time.hour_24 : time.hour_12 %>
+					</tb>
 				<%else%>
-					<tb style="background:red"><%= EventsHelper.hour_12(time) %></tb>
+					<tb style="background:red">
+						<%= @hour_format == '24' ? time.hour_24 : time.hour_12 %>
+					</tb>
 				<%end%>
 			<% end %>
 		</tbody>
