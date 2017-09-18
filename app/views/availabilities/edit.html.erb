@@ -1,5 +1,13 @@
 <h1> Edit Availability </h1>
 
+<p>
+	<b>Date:</b>
+	<%= @availability.event.date.strftime("%a, %B %d, %Y") %>
+	<br>
+	<b>Owner:</b>
+	<%= @availability.event.owner.email %>
+</p>
+
 <% if @availability.errors.any? %>
 	<div id="availability_explanation" class="alert alert-dismissible alert-danger">
 	<h3><%= pluralize(@availability.errors.count, "error") %> prevented these availabilities from being added:</h3>

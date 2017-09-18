@@ -26,7 +26,7 @@
 				<tr>
 					<td><%= @hour_format == 24 ? time.hour_24 : time.hour_12 %></td>
 					<td>
-						<%= pluralize(available_participants.size + 1, "Participant") %>
+						<%= available_participants.size + 1 + " Availabile") %>
 					</td>
 					<td>
 						<%= available_participants.map{|x| x.email}.append(@event.owner.email).join(", ") %>
