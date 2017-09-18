@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Event</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span>
+            Event
+            
+                <span class="parent">&lt;
+                    
+                    <a href="ApplicationRecord.html">ApplicationRecord</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/app/models/event_rb.html">app/models/event.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-compact_times_allowed">compact_times_allowed</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-date_cannot_be_in_the_past">date_cannot_be_in_the_past</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-ensure_times_allowed_has_correct_date">ensure_times_allowed_has_correct_date</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-must_choose_at_least_one_time">must_choose_at_least_one_time</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-name_cannot_be_empty">name_cannot_be_empty</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+      <!-- Section constants -->
+      <div class="sectiontitle">Constants</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class="attr-name">POSSIBLE_TIMES_CONST</td>
+            <td>=</td>
+            <td class="attr-value">Array.new(48).map.with_index{|x,index| Date.today.to_datetime + index * (1.0/48)}</td>
+          </tr>
+          
+            <tr valign='top'>
+              <td>&nbsp;</td>
+              <td colspan="2" class="attr-desc"><p>Array of <a href="DateTime.html">DateTime</a> values iterating through
+every 30 minutes on today&#39;s date starting from midnight.</p></td>
+            </tr>
+          
+        
+      </table>
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Private methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-compact_times_allowed">
+            
+              <b>compact_times_allowed</b>()
+            
+            <a href="../classes/Event.html#method-i-compact_times_allowed" name="method-i-compact_times_allowed" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Delete all nil values from times_allowed array using ruby&#39;s compact
+method. PRE: None POST: Nil values removed from times_allowed</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-compact_times_allowed_source')" id="l_method-i-compact_times_allowed_source">show</a>
+                
+              </p>
+              <div id="method-i-compact_times_allowed_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/event.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">compact_times_allowed</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">times_allowed</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">times_allowed</span>.<span class="ruby-identifier">compact</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-date_cannot_be_in_the_past">
+            
+              <b>date_cannot_be_in_the_past</b>()
+            
+            <a href="../classes/Event.html#method-i-date_cannot_be_in_the_past" name="method-i-date_cannot_be_in_the_past" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Verifies event date is not before today PRE: date exists POST: If date is
+earlier than today, add an error to errors hash.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-date_cannot_be_in_the_past_source')" id="l_method-i-date_cannot_be_in_the_past_source">show</a>
+                
+              </p>
+              <div id="method-i-date_cannot_be_in_the_past_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/event.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">date_cannot_be_in_the_past</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">date</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">errors</span>[<span class="ruby-value">:base</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;Cannot choose a date in the past&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-ensure_times_allowed_has_correct_date">
+            
+              <b>ensure_times_allowed_has_correct_date</b>()
+            
+            <a href="../classes/Event.html#method-i-ensure_times_allowed_has_correct_date" name="method-i-ensure_times_allowed_has_correct_date" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>When we created the times, we used today to generate the intervals.  This
+changes the date of the datetime to the event date. PRE: times_allowed
+exists POST: Set times_allowed to</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-ensure_times_allowed_has_correct_date_source')" id="l_method-i-ensure_times_allowed_has_correct_date_source">show</a>
+                
+              </p>
+              <div id="method-i-ensure_times_allowed_has_correct_date_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/event.rb, line 59</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">ensure_times_allowed_has_correct_date</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">times_allowed</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">times_allowed</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">time</span><span class="ruby-operator">|</span> <span class="ruby-identifier">time</span>.<span class="ruby-identifier">change</span>(<span class="ruby-value">:year</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">date</span>.<span class="ruby-identifier">year</span>,
+                                            <span class="ruby-value">:month</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">date</span>.<span class="ruby-identifier">month</span>,
+                                            <span class="ruby-value">:day</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">date</span>.<span class="ruby-identifier">day</span>)}
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-must_choose_at_least_one_time">
+            
+              <b>must_choose_at_least_one_time</b>()
+            
+            <a href="../classes/Event.html#method-i-must_choose_at_least_one_time" name="method-i-must_choose_at_least_one_time" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Ensures that at least one time is chosen for the event PRE: times_allowed
+exists POST: If times_allowed is empty, add an error to errors hash.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-must_choose_at_least_one_time_source')" id="l_method-i-must_choose_at_least_one_time_source">show</a>
+                
+              </p>
+              <div id="method-i-must_choose_at_least_one_time_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/event.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">must_choose_at_least_one_time</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">compact_times_allowed</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">errors</span>[<span class="ruby-value">:base</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;Must choose at least one time slot&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-name_cannot_be_empty">
+            
+              <b>name_cannot_be_empty</b>()
+            
+            <a href="../classes/Event.html#method-i-name_cannot_be_empty" name="method-i-name_cannot_be_empty" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Ensures the name field is not empty PRE: name exists POST: If name is
+blank, add an error to errors hash.</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-name_cannot_be_empty_source')" id="l_method-i-name_cannot_be_empty_source">show</a>
+                
+              </p>
+              <div id="method-i-name_cannot_be_empty_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/event.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">name_cannot_be_empty</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">errors</span>[<span class="ruby-value">:base</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;Name cannot be empty&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>
