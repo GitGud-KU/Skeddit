@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Availability</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span>
+            Availability
+            
+                <span class="parent">&lt;
+                    
+                    <a href="ApplicationRecord.html">ApplicationRecord</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/app/models/availability_rb.html">app/models/availability.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-compact_times_available">compact_times_available</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-must_choose_at_least_one_time">must_choose_at_least_one_time</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Private methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-compact_times_available">
+            
+              <b>compact_times_available</b>()
+            
+            <a href="../classes/Availability.html#method-i-compact_times_available" name="method-i-compact_times_available" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Delete all nil values from times_available array using ruby&#39;s compact
+method. PRE: times_available exists POST: remove nil values from
+times_available array</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-compact_times_available_source')" id="l_method-i-compact_times_available_source">show</a>
+                
+              </p>
+              <div id="method-i-compact_times_available_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/availability.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">compact_times_available</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">times_available</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">times_available</span>.<span class="ruby-identifier">compact</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-must_choose_at_least_one_time">
+            
+              <b>must_choose_at_least_one_time</b>()
+            
+            <a href="../classes/Availability.html#method-i-must_choose_at_least_one_time" name="method-i-must_choose_at_least_one_time" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>Make sure at least one available time is selected. PRE: times_available
+exists POST: if times_available is empty, add an error to errors hash</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-must_choose_at_least_one_time_source')" id="l_method-i-must_choose_at_least_one_time_source">show</a>
+                
+              </p>
+              <div id="method-i-must_choose_at_least_one_time_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/availability.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">must_choose_at_least_one_time</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">compact_times_available</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-number">0</span>
+              <span class="ruby-keyword">self</span>.<span class="ruby-identifier">errors</span>[<span class="ruby-value">:base</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;Must choose at least one time slot&quot;</span>
+      <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>

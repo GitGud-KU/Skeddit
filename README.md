@@ -50,3 +50,13 @@ With the databse set up, Skeddit should be ready to run! Type `rail s` to launch
 [Devise](https://github.com/plataformatec/devise)
 
 [Simple Form](https://github.com/plataformatec/simple_form)
+
+# Documentation
+
+### How to View Automatically Generated HTML Documentations
+
+Clone the Skeddit repository to your computer.
+
+Open documentation/git_gud_documentation/index.html to browse the code that we wrote.
+
+Open documentation/full_app_documentation/index.html to browse the code for this entire app.
