@@ -7,10 +7,6 @@ class Availability < ApplicationRecord
   # Run compact_times_allowed method before saving an availability to the database.
   before_save :compact_times_available
 
-  #Ensures the availability meets all the requirements before being added.
-  #Because of the way we set up our databse, User and Event ids are already validated elsewhere.
-  validate :must_choose_at_least_one_time
-
   private
 
   # Make sure at least one available time is selected.
