@@ -23,7 +23,7 @@ class Event < ApplicationRecord
   end
   
   #Ensures the name field is not empty
-  def names_cannot_be_empty
+  def name_cannot_be_empty
     if self.name == ""
       self.errors[:base] << "Name cannot be empty"
     end
