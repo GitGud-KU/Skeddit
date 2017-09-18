@@ -4,25 +4,38 @@
 	</h1>
 
 	<p>
-		Owner:
+		<b>Date:</b>
+		<%= @event.date.strftime("%a, %B %d, %Y") %>
+		<br>
+		<b>Owner:</b>
 		<%= @event.owner.email %>
 	</p>
 	<br>
 	<h3>Availabilities</h3>
 	<table class="table table-striped">
 		<thead>
-			<th>Times</th>
-			<th>Participants</th>
+			<th style="width:10%;">Times</th>
+			<th style="width:20%;">Count</th>
+			<th style="width:35%;">Available</th>
+			<th style="width:35%;">Unavailable</th>
 		</thead>
 		<tbody>
-				<% Event::POSSIBLE_TIMES_CONST.each do |time| %>
-					<% if(@event.times_allowed.include?(time)) %>
-						<tr>
-							<td><%= @hour_format == 24 ? time.hour_24 : time.hour_12 %></td>
-							<td></td>
-						</tr>
-					<% end %>
-				<% end %>
+			<% @times_allowed.each do |time| %>
+			<% available_participants = available_participants(@participants,@event,time)
+			unavailable_participants = @event.participants - available_participants%>
+				<tr>
+					<td><%= @hour_format == 24 ? time.hour_24 : time.hour_12 %></td>
+					<td>
+						<%= available_participants.size + 1 + " Availabile") %>
+					</td>
+					<td>
+						<%= available_participants.map{|x| x.email}.append(@event.owner.email).join(", ") %>
+					</td>
+					<td>
+						<%= unavailable_participants.map{|x| x.email}.join(", ") %>
+					</td>
+				</tr>
+			<% end %>
 		</tbody>
 	</table>
 </div>
