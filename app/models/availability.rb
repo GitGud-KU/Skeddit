@@ -5,7 +5,7 @@ class Availability < ApplicationRecord
   belongs_to :user
 
   # Run compact_times_allowed method before saving an availability to the database.
-  before_save :compact_times_allowed
+  before_save :compact_times_available
 
   #Ensures the availability meets all the requirements before being added.
   #Because of the way we set up our databse, User and Event ids are already validated elsewhere.
@@ -21,7 +21,7 @@ class Availability < ApplicationRecord
   		self.errors[:base] << "Must choose at least one time slot"
   	end
   end
-	
+
   # Delete all nil values from times_available array using ruby's compact method.
   # PRE: times_available exists
   # POST: remove nil values from times_available array

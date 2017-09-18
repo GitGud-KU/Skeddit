@@ -1,24 +1,52 @@
-# README
+# Skeddit
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Skeddit is a modular event planner and scheduler created in Ruby on Rails. Its simplistic design makes it easy to navigate, create, view, join, and manage your events. Skeddit supports account creation, and it can run on any machine with access to the same database, and find the same events.
 
-Things you may want to cover:
+[Website](http://skeddit.gitgud-ku.com)
 
-* Ruby version
+### Team Members
 
-* System dependencies
+[Gage Benne](https://github.com/gagebenne) 
+* Database, Models, Login Page
 
-* Configuration
+[Zachary Bruennig](https://github.com/zbruennig)
+* Validation, Error Checking, QA, Controllers
 
-* Database creation
+[Andy Monroe](https://github.com/andrew-monroe)
+* Documentation and Project Generator, resident Rails Guru 
 
-* Database initialization
+[Mason Wilde](https://github.com/masonwilde)
+* UI, CSS, Views
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+# Installation
 
-* Deployment instructions
+### Prerequisites
 
-* ...
+Skeddit was built with Ruby 2.4.1, Rails 5.1.4, and Postgres 9.6.5. Previous versions may be unsupported.
+
+To set up Rails with Postgres, follow [this guide](https://www.digitalocean.com/community/tutorials/how-to-setup-ruby-on-rails-with-postgres).
+
+### Configuration
+
+Once your Rails environment is set up, run `git clone https://github.com/GitGud-KU/Skeddit.git`
+
+Then, add your database settings into the config/database.yml file.
+
+Finally, run `rake db:create` then `rake db:migrate`.
+
+With the databse set up, Skeddit should be ready to run! Type `rail s` to launch the app.
+
+### Works Cited/Libraries Used:
+
+[Rails](http://rubyonrails.org/)
+
+[Bootstrap](http://getbootstrap.com/)
+
+[Bootswatch](https://bootswatch.com/)
+
+[Gemfile Gems](https://github.com/GitGud-KU/Skeddit/blob/master/Gemfile)
+
+[Devise](https://github.com/plataformatec/devise)
+
+[Simple Form](https://github.com/plataformatec/simple_form)
