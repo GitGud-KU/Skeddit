@@ -2,15 +2,21 @@
 
 Skeddit is a modular event planner and scheduler created in Ruby on Rails. Its simplistic design makes it easy to navigate, create, view, join, and manage your events. Skeddit supports account creation, and it can run on any machine with access to the same database, and find the same events.
 
+[Website](http://skeddit.gitgud-ku.com)
+
 ### Team Members
 
-[Gage Benne](https://github.com/gagebenne)
+[Gage Benne](https://github.com/gagebenne) 
+* Database, Models, Login Page
 
 [Zachary Bruennig](https://github.com/zbruennig)
+* Validation, Error Checking, QA, Controllers
 
 [Andy Monroe](https://github.com/andrew-monroe)
+* Documentation and Project Generator, resident Rails Guru 
 
 [Mason Wilde](https://github.com/masonwilde)
+* UI, CSS, Views
 
 
 # Installation
