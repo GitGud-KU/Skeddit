@@ -42,7 +42,9 @@ class EventsController < ApplicationController
   # Find event object to update and store possible_times in a var.
   def edit
     @event = Event.find(params[:id])
-    @possible_times = Event::POSSIBLE_TIMES_CONST
+    @possible_times = (Event::POSSIBLE_TIMES_CONST).map{|time| time.change( :year => @event.date.year,
+                                                                            :month => @event.date.month,
+                                                                            :day => @event.date.day)}
   end
 
   # Define what to do when trying to update an event.
@@ -55,7 +57,9 @@ class EventsController < ApplicationController
     elsif @event.update(event_params)
       redirect_to(events_path)
     else
-      @possible_times = Event::POSSIBLE_TIMES_CONST
+      @possible_times = (Event::POSSIBLE_TIMES_CONST).map{|time| time.change( :year => @event.date.year,
+                                                                              :month => @event.date.month,
+                                                                              :day => @event.date.day)}
       render :edit
     end
   end
