@@ -13,15 +13,19 @@ class Availability < ApplicationRecord
 
   private
 
-  #Make sure at least one available time is selected.
+  # Make sure at least one available time is selected.
+  # PRE: times_available exists
+  # POST: if times_available is empty, add an error to errors hash
   def must_choose_at_least_one_time
-  	if compact_times_allowed.size <= 0
+  	if compact_times_available.size <= 0
   		self.errors[:base] << "Must choose at least one time slot"
   	end
   end
 	
   # Delete all nil values from times_available array using ruby's compact method.
-  def compact_times_allowed
+  # PRE: times_available exists
+  # POST: remove nil values from times_available array
+  def compact_times_available
     self.times_available = self.times_available.compact
   end
 
