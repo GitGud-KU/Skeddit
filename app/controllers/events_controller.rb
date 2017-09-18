@@ -5,7 +5,7 @@ class EventsController < ApplicationController
 
   # Create an instance var of all of the events for use in the events#index page
   def index
-    @events = Event.all
+    @events = Event.all.order(:date)
     @admin_events = @events.select{|event| event.owner == current_user}
     @other_events = @events.reject{|event| event.owner == current_user}
   end
