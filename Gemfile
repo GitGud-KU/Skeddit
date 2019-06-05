@@ -15,7 +15,7 @@ gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Bootstrap for Sass
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 3.4.1'
 # Use Bootswatch themes
 gem 'bootswatch-rails'
 # Use Uglifier as compressor for JavaScript assets
